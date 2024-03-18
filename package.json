@@ -10,7 +10,8 @@
   "scripts": {
     "start": "ts-node ./src/index.ts",
     "format": "prettier --write .",
-    "test": "jest"
+    "test": "jest",
+    "run-test-data": "node 'node_modules/.bin/jest' './tests/commands-executor/commands-executor.test.ts' -t 'Commands Executor should read and parse commands\\.txt, execute each command collect output strings and log at the end'"
   },
   "keywords": [],
   "author": "Justin",

@@ -16,3 +16,8 @@ To run the scripts, you need to have Node.js and npm installed on your machine. 
 2. Navigate to the project directory: `cd yum-toy-robot-cli`
 3. Install dependencies: `npm install`
 4. Run a script using `npm run <script-name>`. For example, to start the application, run `npm run start`.
+
+## Notes
+
+- Written and tested on node v20.11.1
+- This is not how I would approach an everyday unit of work, I am very much against speculative development & wouldn’t ordinarily add extension constructs without knowing if the use case demanded it.
