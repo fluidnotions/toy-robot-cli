@@ -15,6 +15,7 @@ export type Command = {
 };
 
 export interface AgentController {
-  executeCommand(command: Command): void;
+  executeCommand(command: Command): string | void;
   nextPosition(): Position;
+  getEnvironmentDimensions(): [number, number];
 }

@@ -2,6 +2,7 @@ import { describe, expect, it } from "@jest/globals";
 import { Agent, Robot } from "../../src/agent";
 import { Command, Controller, Instruction } from "../../src/control";
 import { Direction, Environment, Square } from "../../src/environment";
+import { join } from "path";
 
 describe("Controller", () => {
   let controller: Controller;
@@ -133,6 +134,20 @@ describe("Controller", () => {
       ].forEach((command) => controller.executeCommand(command));
 
       expect(agent.getPosition()).toEqual([4, 3, Direction.SOUTH]);
+    });
+  });
+
+  describe("inputExecutor", () => {
+    let controller: Controller;
+
+    beforeEach(() => {
+      controller = new Controller(new Square(5), new Robot());
+    });
+
+    it("should read and parse commands.txt, execute each command collect output strings and log at the end", () => {
+      const filePath = join(__dirname, "..", "__data__", "commands.txt");
+      const output = controller.inputExecutor(filePath);
+      expect(!!output).toBeTruthy();
     });
   });
 });

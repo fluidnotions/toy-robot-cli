@@ -20,4 +20,8 @@ export abstract class Environment {
     }
     return valid;
   }
+
+  getDimensions(): [number, number] {
+    return this.dimensions;
+  }
 }

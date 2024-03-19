@@ -1,12 +1,17 @@
 import { Agent } from "../agent";
 import { Direction, Environment, Position } from "../environment";
 import { AgentController, Command, Instruction } from "./types";
+import { readFileSync } from "fs";
 
 export class Controller implements AgentController {
   constructor(
     private environment: Environment,
     private agent: Agent,
   ) {}
+
+  getEnvironmentDimensions(): [number, number] {
+    return this.environment.getDimensions();
+  }
 
   executeCommand(command: Command): string | void {
     const { instruction, next } = command;
@@ -47,5 +52,36 @@ export class Controller implements AgentController {
       return [x - 1, y, direction];
     }
     return [x, y, direction];
+  }
+
+  inputExecutor(filePath: string): string {
+    const fileContent = readFileSync(filePath, "utf-8");
+    const lines = fileContent.split("\n");
+    const commandStrings = lines.filter((line) => line.trim() !== "");
+    const commands = commandStrings.map((commandString) => {
+      const [instruction, next] = commandString.split(" ");
+      if (instruction === "PLACE") {
+        const [x, y, direction] = next.split(",");
+        return {
+          instruction: Instruction.PLACE,
+          next: [parseInt(x), parseInt(y), direction as Direction],
+        };
+      }
+      return {
+        instruction: Instruction[instruction as keyof typeof Instruction],
+      };
+    });
+    const outputs: string[] = [];
+    commands
+      .map((c) => c as Command)
+      .forEach((command: Command) => {
+        try {
+          const out = this.executeCommand(command);
+          !!out && outputs.push(out);
+        } catch (e: any) {
+          outputs.push(e.message);
+        }
+      });
+    return outputs.join("\n");
   }
 }

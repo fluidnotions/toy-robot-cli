@@ -11,7 +11,7 @@
     "start": "ts-node ./src/index.ts",
     "format": "prettier --write .",
     "test": "jest",
-    "run-test-data": "node 'node_modules/.bin/jest' './tests/commands-executor/commands-executor.test.ts' -t 'Commands Executor should read and parse commands\\.txt, execute each command collect output strings and log at the end'"
+    "run-test-data": "node 'node_modules/.bin/jest' '/home/new/yum-toy-robot-cli/tests/control/controller.test.ts' -t 'Controller inputExecutor'"
   },
   "keywords": [],
   "author": "Justin",
