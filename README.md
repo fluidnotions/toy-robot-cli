@@ -53,18 +53,18 @@ To run the scripts, you need to have Node.js and npm installed on your machine. 
 
 ### Example Input and Output
 
+```txt
 a)
-PLACE 0,0,NORTH
-MOVE
-REPORT
-Output: 0,1,NORTH
-b)
-PLACE 0,0,NORTH
-LEFT
-REPORT
-Output: 0,0,WEST
-
-Output: `0,0,WEST`
+PLACE 0,0,NORTH  
+MOVE  
+REPORT  
+Output: 0,1,NORTH  
+b)  
+PLACE 0,0,NORTH  
+LEFT  
+REPORT  
+Output: 0,0,WEST  
+```
 
 ### Deliverables
 
